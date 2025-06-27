@@ -4,10 +4,10 @@ import { Router } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import Home from './Home'
-import Academics from './Academics'
+import Academics from './academics'
 import Athletics from './Athletics'
 import Application from './pages/Application'
-import Register from './pages/register'
+import Register from './pages/Register'
 import Login from './pages/Login'
 
 
