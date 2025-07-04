@@ -4,11 +4,11 @@ function Roster() {
   const [names, setNames] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/comments")
+    fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((data) => {
         const limitedData = data.slice(0, 10);
-        const extractedNames = limitedData.map((comment) => comment.name);
+        const extractedNames = limitedData.map((user) => user.name);
         setNames(extractedNames);
       })
       .catch((error) => console.error("Error:", error));

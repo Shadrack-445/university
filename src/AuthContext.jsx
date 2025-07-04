@@ -1,48 +1,38 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { createContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "firebase/auth";
+import { auth } from "./firebase";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
-    
-    const [user,setUser] = useState(() => {
-        const storedUser = localStorage.getItem["user"];
-        return storedUser ? JSON.parse(storedUser) : null;
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
     });
+    return () => unsubscribe();
+  }, []);
 
-    useEffect(() => {
-        if(user){
-            localStorage.setItem("user",JSON.stringify(user));
-        }
-    }, [user]);
-    
-    const register = (email,password) => {
-        const newUser = {email,password}
-        setUser(newUser);
-    }
+  const register = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-    const login = (email,password) => {
-        const storedUser = JSON.parse(localStorage.getItem("user"));
+  const login = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-        if(storedUser && storedUser.email === email && storedUser.password === password){
-            setUser(storedUser);
-            return true;
-        }else{
-            return false;
-        }
-    }
+  const logout = () => {
+    return signOut(auth);
+  };
 
-    const logout = () => {
-        setUser(null);
-        localStorage.removeItem("user");
-    }
-    
-    return(
-        <AuthContext.Provider value={{user, register, login, logout}}>
-            {children}
-        </AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={{ user, login, register, logout }}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
+};
 
-    )
-}
-export default AuthContext
+export const useAuthContext = () => useContext(AuthContext);

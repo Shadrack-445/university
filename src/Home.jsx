@@ -1,69 +1,83 @@
 import University from "./University.jpeg";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Students from "./students.jpeg";
+import Gymnasium from "./gymnasium.jpeg";
+import Apply from "./apply.jpeg";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
-
-
-
-function Home(){
-
-    
-    return(
-        <>
-        <h1>Mastermind University</h1>
-        <Navbar bg="dark" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand href="#home"><Badge variant="secondary">MU</Badge></Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="/Academics.jsx">Academics</Nav.Link>
-            <Nav.Link href="/Athletics.jsx">Athletics</Nav.Link>
-            <Nav.Link href="/Application.jsx">Apply</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+function Home() {
+  return (
+    <>
+      <br /> 
+      <br />   
+      <h1 style={{color:"brown"}}>Mastermind University</h1>
       <br />
-      <img src={University} alt="University"/>
-      <p>The ultimate place to be</p>
+      <img src={University} alt="University" style={{ maxWidth: "100%" }} />
       <br />
-      <div>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="/students.jpeg" />
-      <Card.Body>
-        <Card.Title>Academics</Card.Title>
-        <Card.Text>
-          Explore some of the courses and programs the university has to offer aswell as other academic activities that might be coming up.
-        </Card.Text>
-        <Button variant="primary">View Academics</Button>
-      </Card.Body>
-      </Card>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="/gymnasium.jpeg" />
-      <Card.Body>
-        <Card.Title>Athletics</Card.Title>
-        <Card.Text>
-          Have a quick view into "The Spartans" our very on Mastermind University athletes,and the prowess in the various sports. 
-        </Card.Text>
-        <Button variant="primary">View Athletics</Button>
-      </Card.Body>
-      </Card>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="/apply.jpeg" />
-      <Card.Body>
-        <Card.Title>Apply</Card.Title>
-        <Card.Text>
-          Interested? Don't waste any time. Click the button below to apply now.
-        </Card.Text>
-        <Button variant="primary">Apply Now</Button>
-      </Card.Body>
-      </Card>
-       </div>
-        </>
-
-
-    )
-
+      <br />
+      <br />
+      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+        <Card style={{ width: "18rem" }}>
+          <Card.Img
+            src={Students}
+            variant="top"
+            style={{
+              height: "200px",
+              objectFit: "cover"
+            }}
+          />
+          <Card.Body>
+            <Card.Title>Academics</Card.Title>
+            <Card.Text>
+              Explore some of the courses and programs the university has to offer as well as other academic activities that might be coming up.
+            </Card.Text>
+            <Button as={Link} to="/academics" variant="primary">
+              View Academics
+            </Button>
+          </Card.Body>
+        </Card>
+        <Card style={{ width: "18rem" }}>
+          <Card.Img
+            variant="top"
+            src={Gymnasium}
+            style={{
+              height: "200px",
+              objectFit: "cover"
+            }}
+          />
+          <Card.Body>
+            <Card.Title>Athletics</Card.Title>
+            <Card.Text>
+              Have a quick view into "The Spartans," our very own Mastermind University athletes and their prowess in various sports.
+            </Card.Text>
+            <Button as={Link} to="/athletics" variant="primary">
+              View Athletics
+            </Button>
+          </Card.Body>
+        </Card>
+        <Card style={{ width: "18rem" }}>
+          <Card.Img
+            variant="top"
+            src={Apply}
+            style={{
+              height: "200px",
+              objectFit: "cover"
+            }}
+          />
+          <Card.Body>
+            <Card.Title>Apply</Card.Title>
+            <Card.Text>
+              Interested? Don't waste any time. Click the button below to apply now.
+            </Card.Text>
+            <Button as={Link} to="/application" variant="primary">
+              Apply Now
+            </Button>
+          </Card.Body>
+        </Card>
+      </div>
+    </>
+  );
 }
-export default Home 
+
+export default Home;

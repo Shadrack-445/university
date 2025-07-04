@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../AuthContext";
 
 function Application() {
+  const {user} = useAuthContext()
+ 
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -38,7 +41,7 @@ function Application() {
   if (submitted) {
     return (
       <div>
-        <h2>Thank you for applying!</h2>
+        <h3>Thank you for applying!</h3>
         <p>We have received your application.</p>
       </div>
     );
@@ -48,8 +51,9 @@ function Application() {
     return (
         <>
       <h2>You need to Login or Register</h2>
-      <Link to="/Login">Login</Link>
-      <Link to="/Register">Register</Link>
+      <Link to="/login">Login</Link>
+      <br />
+      <Link to="/register">Register</Link>
 
     </>
     );
@@ -92,11 +96,13 @@ function Application() {
               onChange={handleChange}
               required
             >
-              <option value="">Select a program</option>
-              <option value="Computer Science">Computer Science</option>
-              <option value="Business Administration">Business Administration</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Psychology">Psychology</option>
+              <option value="Choose Course">Choose Course</option>
+              <option value="Business">Business</option>
+              <option value="Chemical Engineering">Chemical Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Education">Education</option>
+              <option value="Medicine">Medicine</option>
             </select>
           </label>
         </div>
