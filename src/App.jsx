@@ -8,7 +8,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Notfound from './Notfound'; 
 import Navigation from './Navigation';
-import Roster from './roster';
+import Roster from './Roster';
 import Timings from './Schedule';
 import University from './pages/University';
 
