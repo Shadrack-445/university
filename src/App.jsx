@@ -10,6 +10,7 @@ import NotFound from './NotFound';
 import Navigation from './Navigation';
 import Roster from './roster';
 import Timings from './Schedule';
+import University from './pages/University';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<NotFound />} />
         <Route path='/schedule' element={<Timings/>}/>
+        <Route path='/university' element={<University/>}/>
       </Routes>
     </Router>
     </>

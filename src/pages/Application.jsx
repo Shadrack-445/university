@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../AuthContext";
+import { db } from "../firebase";
+import { collection , addDoc , Timestamp } from "firebase/firestore";
+
 
 function Application() {
   const {user} = useAuthContext()
@@ -20,7 +23,7 @@ function Application() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -31,8 +34,16 @@ function Application() {
       alert("Ensure to fill out all fields.");
       return;
     }else{
-        console.log("Application submitted:", formData);
-        setSubmitted(true);
+       
+    }try{
+        await addDoc(collection(db,"submissions"),{
+        ...formData,
+        submittedAt: Timestamp.now(),
+      })
+      console.log("Application submitted:",formData)
+      setSubmitted(true)
+    }catch(error){
+      console.log("Error submitting application", error)
     }
 
     
