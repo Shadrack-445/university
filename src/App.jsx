@@ -6,7 +6,7 @@ import Athletics from './Athletics';
 import Application from './pages/Application';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import NotFound from './NotFound'; 
+import Notfound from './Notfound'; 
 import Navigation from './Navigation';
 import Roster from './roster';
 import Timings from './Schedule';
@@ -26,7 +26,7 @@ function App() {
         <Route path='/application' element={<Application />}/>
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
-        <Route path='*' element={<NotFound />} />
+        <Route path='*' element={<Notfound />} />
         <Route path='/schedule' element={<Timings/>}/>
         <Route path='/university' element={<University/>}/>
       </Routes>
